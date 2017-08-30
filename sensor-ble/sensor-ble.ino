@@ -6,6 +6,9 @@
 // 29/08/2017
 
 
+// Inclui Biblioteca
+//#include <SoftwareSerial.h>
+//SoftwareSerial SoftSerial(10, 11); // RX, TX 
 
 // Configuração dos Terminais 
 //
@@ -24,6 +27,12 @@ void setup() {
 pinMode(led, OUTPUT);
 pinMode(sensor, OUTPUT);
 
+// Serial
+Serial.begin(9600);
+
+// Serial Software
+//SoftSerial.begin(38400);
+
 
 }
 
@@ -36,7 +45,11 @@ sts = digitalRead(sensor);
 // Verifica o status do sensor
 if(sts == HIGH){
     // Se fechado desliga o led e não envia sinal. 
-    digitalWrite(led, LOW);
+        delay(500);
+        digitalWrite(led, LOW);
+        delay(1000);
+        digitalWrite(led, HIGH);
+        Serial.println("Fechado...");
     
 }else{
     
@@ -57,10 +70,12 @@ if(sts == HIGH){
         //
 
 
-        delay(100);
-        digitalWrite(led, HIGH);
-        delay(100);
+        delay(500);
         digitalWrite(led, LOW);
+        delay(1000);
+        digitalWrite(led, HIGH);
+        Serial.println("Aberto...");
+        
     
        }// Fim while
 
